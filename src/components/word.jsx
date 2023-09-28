@@ -20,7 +20,7 @@ const Word = () => {
       try {
         const response = await fetch(url, options);
         if (response.ok) {
-          const data = await response.text();
+          const data = await response.json();
           setRandomWord(data);
         } else {
           console.error("Request failed with status:", response.status);
@@ -32,13 +32,17 @@ const Word = () => {
 
     fetchData();
   }, []);
-
+  console.log(randomWord);
   return (
     <div>
       <h1>Random Word:</h1>
       {randomWord && <p>{randomWord.word}</p>}
       <h1>Definition:</h1>
-      {randomWord && <p>{randomWord.definition}</p>}
+      {randomWord && randomWord.results && randomWord.results.length > 0 ? ( // checks to see if there is a definition in results
+        <p>{randomWord.results[0].definition}</p>
+      ) : (
+        <p>No definition available</p>
+      )}
     </div>
   );
 };

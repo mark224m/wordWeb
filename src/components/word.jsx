@@ -34,7 +34,7 @@ const Word = () => {
   }, []);
   console.log(randomWord);
   return (
-    <div>
+    <div className="position-absolute top-50 start-50 translate-middle text-center">
       <h1>Random Word:</h1>
       {randomWord && <p>{randomWord.word}</p>}
       <h1>Definition:</h1>
